@@ -1,0 +1,101 @@
+{
+    "os": "Linux-5.4.0-122-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-12-07T07:50:26.316337",
+    "startedAt": "2022-12-07T07:50:25.620435",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--dataset",
+        "cifar10",
+        "--num-labeled",
+        "40",
+        "--arch",
+        "wideresnet",
+        "--batch-size",
+        "64",
+        "--lr",
+        "0.03",
+        "--expand-labels",
+        "--seed",
+        "5",
+        "--out",
+        "results/cifar10@40.5"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/kekmodel/FixMatch-pytorch.git",
+        "commit": "f54946074fba383e28320d8f50b627eabd0c7e3c"
+    },
+    "email": null,
+    "root": "/notebooks/FixMatch-pytorch",
+    "host": "np0wddepus",
+    "username": "root",
+    "executable": "/notebooks/env3/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3200.3689999999997,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3200.369,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 245.95343399047852,
+        "used": 111.25115585327148
+    },
+    "gpu": "Quadro RTX 5000",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Quadro RTX 5000",
+            "memory_total": 17179869184
+        }
+    ],
+    "memory": {
+        "total": 29.381629943847656
+    }
+}

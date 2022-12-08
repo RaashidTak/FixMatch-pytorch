@@ -1,0 +1,43 @@
+diff --git a/train.py b/train.py
+index 401254f..19f6da7 100644
+--- a/train.py
++++ b/train.py
+@@ -16,9 +16,12 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
+ from torch.utils.data.distributed import DistributedSampler
+ from torch.utils.tensorboard import SummaryWriter
+ from tqdm import tqdm
+-
++import os
+ from dataset.cifar import DATASET_GETTERS
+ from utils import AverageMeter, accuracy
++import wandb
++wandb.init(project="fixmatch-python-run2", resume = True, sync_tensorboard = True)
++os.environ["WANDB_SILENT"] = "true"
+ 
+ logger = logging.getLogger(__name__)
+ best_acc = 0
+@@ -313,7 +316,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
+ 
+     labeled_iter = iter(labeled_trainloader)
+     unlabeled_iter = iter(unlabeled_trainloader)
+-
++    wandb.watch(model)
+     model.train()
+     for epoch in range(args.start_epoch, args.epochs):
+         batch_time = AverageMeter()
+@@ -438,7 +441,14 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
+             logger.info('Best top-1 acc: {:.2f}'.format(best_acc))
+             logger.info('Mean top-1 acc: {:.2f}\n'.format(
+                 np.mean(test_accs[-20:])))
+-
++        wandb.log({
++            "Epoch": epoch,
++            "Test Loss": test_loss,
++            "Test Acc": test_acc,
++            "Train Loss": losses.avg,
++            "Train Loss x": losses_x.avg,
++            "Train Loss u": losses_u.avg,
++            "Mask": mask_probs.avg})
+     if args.local_rank in [-1, 0]:
+         args.writer.close()
+ 

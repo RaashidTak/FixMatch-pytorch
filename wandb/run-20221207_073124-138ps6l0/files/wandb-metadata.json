@@ -1,0 +1,101 @@
+{
+    "os": "Linux-5.4.0-122-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-12-07T07:31:25.741181",
+    "startedAt": "2022-12-07T07:31:24.792407",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--dataset",
+        "cifar10",
+        "--num-labeled",
+        "4000",
+        "--arch",
+        "wideresnet",
+        "--batch-size",
+        "64",
+        "--lr",
+        "0.03",
+        "--expand-labels",
+        "--seed",
+        "5",
+        "--out",
+        "results/cifar10@4000.5"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/kekmodel/FixMatch-pytorch.git",
+        "commit": "f54946074fba383e28320d8f50b627eabd0c7e3c"
+    },
+    "email": null,
+    "root": "/notebooks/FixMatch-pytorch",
+    "host": "nviylar8e7",
+    "username": "root",
+    "executable": "/notebooks/env3/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3199.979,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3199.979,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 245.95343399047852,
+        "used": 62.38407897949219
+    },
+    "gpu": "NVIDIA RTX A4000",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA RTX A4000",
+            "memory_total": 17171480576
+        }
+    ],
+    "memory": {
+        "total": 44.10197830200195
+    }
+}
