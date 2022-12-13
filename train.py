@@ -20,7 +20,7 @@ import os
 from dataset.cifar import DATASET_GETTERS
 from utils import AverageMeter, accuracy
 import wandb
-wandb.init(entity='aml-audit', project="fix-match-pytorch", resume = True, sync_tensorboard = True)
+wandb.init(entity='aml-audit', project="fix-match-vast", resume = True, sync_tensorboard = True)
 os.environ["WANDB_SILENT"] = "true"
 
 logger = logging.getLogger(__name__)
