@@ -19,8 +19,12 @@ from tqdm import tqdm
 import os
 from dataset.cifar import DATASET_GETTERS
 from utils import AverageMeter, accuracy
+
+from vat import VATLoss
+
 import wandb
-wandb.init(entity='aml-audit', project="fix-match-vast", resume = True, sync_tensorboard = True)
+
+wandb.init(entity='aml-audit', project='fixmatch-pytorch-vat', sync_tensorboard=True, resume = True)
 os.environ["WANDB_SILENT"] = "true"
 
 logger = logging.getLogger(__name__)
@@ -127,6 +131,13 @@ def main():
                         help="For distributed training: local_rank")
     parser.add_argument('--no-progress', action='store_true',
                         help="don't use progress bar")
+
+    parser.add_argument('--xi', type=float, default=10.0, metavar='XI',
+                        help='hyperparameter of VAT (default: 0.1)')
+    parser.add_argument('--eps', type=float, default=1.0, metavar='EPS',
+                        help='hyperparameter of VAT (default: 1.0)')
+    parser.add_argument('--ip', type=int, default=1, metavar='IP',
+                        help='hyperparameter of VAT (default: 1)')
 
     args = parser.parse_args()
     global best_acc
@@ -363,9 +374,11 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             max_probs, targets_u = torch.max(pseudo_label, dim=-1)
             mask = max_probs.ge(args.threshold).float()
 
-            Lu = (F.cross_entropy(logits_u_s, targets_u,
-                                  reduction='none') * mask).mean()
-
+            # Lu = (F.cross_entropy(logits_u_s, targets_u,
+            #                       reduction='none') * mask).mean()
+            ul_inputs = torch.cat((inputs_u_w, inputs_u_s)).to(args.device)
+            vat_loss = VATLoss(xi=args.xi, eps = args.eps, ip = args.ip)
+            Lu = vat_loss(model, ul_inputs)
             loss = Lx + args.lambda_u * Lu
 
             if args.amp:
